@@ -258,6 +258,12 @@ export const callFetchSubscriberById = (id: string) => {
     return axios.get<IBackendRes<ISubscribers>>(`/api/v1/subscribers/${id}`);
 }
 
-export const callAskAI =(prompt : string) =>{
-    return axios.get<IBackendRes<string>>(`/api/v1/ask?question=${prompt}`);
+export const callAskAI = (prompt: string) => {
+    return axios.get<string>(`/api/v1/ask?question=${prompt}`); // Kiểu trả về là string thay vì IBackendRes<string>
+};
+
+
+// 
+export const callGetJobByEmail = () => {
+    return axios.get<IBackendRes<string>>(`/api/v1/email`);
 }

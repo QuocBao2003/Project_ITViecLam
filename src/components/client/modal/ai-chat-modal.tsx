@@ -42,22 +42,8 @@ const AIChatModal = (props : IAIChatProps) => {
         setLoading(true);
         try{
             const res = await callAskAI(inputValue);
-            if(res?.data){
-                let content = '';
-                const responseData = res.data as any;
-                
-                if (typeof responseData === 'object') {
-                    if (responseData.data && Array.isArray(responseData.data)) {
-                        content = responseData.data.join('\n');
-                    } else if (responseData.data) {
-                        content = typeof responseData.data === 'string' ? responseData.data : JSON.stringify(responseData.data);
-                    } else {
-                        content = JSON.stringify(responseData);
-                    }
-                } else {
-                    content = responseData;
-                }
-                
+            if(res){
+                const content = res.toString();
                 const assistantMessage = {role : 'assistant', content } as IChatMessage;
                 setMessages(prev => [...prev,assistantMessage]);
             }
@@ -80,8 +66,8 @@ const AIChatModal = (props : IAIChatProps) => {
         <Modal
             title={
                 <div style={{display : "flex", alignItems : 'center'}}>
-                    <img src={images} alt='chat-icon' style={{marginRight : '8px', width:'30px', height:'30px',borderRadius:'50%',objectFit:'cover'}}/>
-                    <span>Hỗ trợ AI</span>
+                    
+                    <span>Chat với AI</span>
                 </div>
                 }
                 open={open}
@@ -111,7 +97,11 @@ const AIChatModal = (props : IAIChatProps) => {
                                 <div 
                                 key={index}
                                 className={`${styles['message']} ${msg.role ==='user' ? styles['user-massage'] : styles['assistant-massage']}`}  >
-                                    <Avatar icon={msg.role === 'user' ? <UserOutlined/> :<RobotOutlined/>}/>
+                                    {msg.role === 'user' ? (
+                                        <Avatar icon={<UserOutlined/>}/>
+                                    ) : (""
+                                        
+                                    )}
                                     <div className={styles['message-content']}>
                                         <Text>{msg.content}</Text>
                                     </div>

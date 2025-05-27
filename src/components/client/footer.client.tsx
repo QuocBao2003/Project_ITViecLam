@@ -19,10 +19,6 @@ const Footer: React.FC = () => {
           <h3>Thông tin</h3>
           <ul className={styles['info-list']}>
             <li><a href="#">Cẩm nang nghề nghiệp</a></li>
-            <li><a href="#">Báo giá dịch vụ</a></li>
-            <li><a href="#">Điều khoản sử dụng</a></li>
-            <li><a href="#">Quy định bảo mật</a></li>
-            <li><a href="#">Sơ đồ trong web</a></li>
             <li><a href="#">Chính sách đã liệu cỡ nhân</a></li>
             <li><a href="#">Tuân thủ và sự đồng ý của Khách Hàng</a></li>
           </ul>
